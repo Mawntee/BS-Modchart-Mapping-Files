@@ -14,10 +14,12 @@ My Workflow:
 3. I started originally with the "demo.js" file from the Noodle Extensions (now call "Heck") documentation. 
     - This file has been built up and personalized over time with functions I've made for all of these charts.
     - Many of these go un-used, and are only there for copy/pasta because It's nearly impossible to remember every little thing you can do with Heck.
-4. In the JS file there is a section at the very top where I tell it what "input dif" to use, and where to export it to. (Expert -> Ex+)
-   Scrolling down lower you will find a bunch of functions that sit as copy/pasta or reference material 
-   Below those you will find a section titled "//#region Do your dirty work here" This is where all the actual modchart goodies happen. 
-   At the bottom are all the fuctions that handle exporting and sorting of the final output JSON file. 
+4. 
+    - In the JS file there is a section at the very top where I tell it what "input dif" to use, and where to export it to. (Expert -> Ex+)
+    - Scrolling down lower you will find a bunch of functions that sit as copy/pasta or reference material.
+    - Below those you will find a section titled: "//#region Do your dirty work here" 
+     - This is where all the actual modchart goodies happen. (CTRL+F to this section) 
+    - At the bottom are all the fuctions that handle exporting and sorting of the final output JSON file. 
 
 
 
