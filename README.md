@@ -6,6 +6,24 @@ Each chart really focuses on one main aspect/gimmick or a new feature that was a
 
 I still go back to these scripts as a reference for charts that I'm currently working on, so I figured I'd post them up here as well for others to pick apart and see how things are done. 
 
+
+My Workflow:
+1. Start with a vanilla map "Expert" difficulty in MMA2
+2. Once charted, I will duplicate the difficulty to an "Expert Plus" difficulty
+    - I will then add the requirements for "Chroma" and "Noodle Extensions" to the new Ex+ difficulty
+3. I started originally with the "demo.js" file from the Noodle Extensions (now call "Heck") documentation. 
+    - This file has been built up and personalized over time with functions I've made for all of these charts.
+    - Many of these go un-used, and are only there for copy/pasta because It's nearly impossible to remember every little thing you can do with Heck.
+4. In the JS file there is a section at the very top where I tell it what "input dif" to use, and where to export it to. (Expert -> Ex+)
+   Scrolling down lower you will find a bunch of functions that sit as copy/pasta or reference material 
+   Below those you will find a section titled "//#region Do your dirty work here" This is where all the actual modchart goodies happen. 
+   At the bottom are all the fuctions that handle exporting and sorting of the final output JSON file. 
+
+
+
+
+
+
 DISCLAIMER: When I was making this, I was starting with literally ZERO experience with any kind of scripting or coding. 
 This code is very rough, but it was very readable and simple for my smooth slippery brain to understand. 
 If you know better practices, cool! Use them yourself!
