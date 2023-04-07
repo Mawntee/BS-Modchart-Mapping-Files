@@ -1,0 +1,48 @@
+{
+  "_version": "2.0.0",
+  "_songName": "Small Shock",
+  "_songSubName": "",
+  "_songAuthorName": "Toby Fox",
+  "_levelAuthorName": "Chief Queef",
+  "_beatsPerMinute": 68,
+  "_shuffle": 0,
+  "_shufflePeriod": 0.5,
+  "_previewStartTime": 0.5,
+  "_previewDuration": 12,
+  "_songFilename": "song.egg",
+  "_coverImageFilename": "cover.jpg",
+  "_environmentName": "BigMirrorEnvironment",
+  "_songTimeOffset": 0,
+  "_customData": { "_contributors": [] },
+  "_difficultyBeatmapSets": [
+    {
+      "_beatmapCharacteristicName": "Standard",
+      "_difficultyBeatmaps": [
+        {
+          "_difficulty": "Easy",
+          "_difficultyRank": 1,
+          "_beatmapFilename": "EasyStandard.dat",
+          "_noteJumpMovementSpeed": 6.9,
+          "_noteJumpStartBeatOffset": 3,
+          "_customData": {
+            "_environmentRemoval": [
+                "Floor",
+                "Construction",
+                "Buildings",
+                "FrontLights",
+                "GlowLineL",
+                "GlowLineR"
+            ],
+            "_difficultyLabel": "acc map",
+            "_editorOffset": 100,
+            "_editorOldOffset": 100,
+            "_warnings": [],
+            "_information": [],
+            "_suggestions": [],
+            "_requirements": ["Noodle Extensions", "Chroma"]
+          }
+        }
+      ]
+    }
+  ]
+}
