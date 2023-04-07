@@ -395,10 +395,10 @@ for (let i = 0; i < (196-136); i++){
 
 
 //#region Do your dirty work here
-filterednotes = _notes.filter(n => n._time >=1 && n._time <= 18);
+filterednotes = _notes.filter(n => n._time >=1 && n._time <= 18); // filters notes from beat (_time) 1 to beat 18
 filterednotes.forEach(note => {
-  note._customData._animation = {}
-  note._customData._animation._scale = [[0.1, 0.1, 0.1, 0]];
+  note._customData._animation = {} // creates a new section in each individual notes _customData for _animation
+  note._customData._animation._scale = [[0.1, 0.1, 0.1, 0]]; // sets x,y,z scale of the note to 0.1 at the very start of the notes life (0)
 });
 
 //#endregion
