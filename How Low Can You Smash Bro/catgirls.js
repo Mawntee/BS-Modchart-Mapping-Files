@@ -306,20 +306,29 @@ for (let i = 0; i < (196-136); i++){
 
 
 //#region Do your dirty work here
+
+
+
+// This one is gross and I think was my first ever test for note animations?
+// I had NO CLUE what I was doing, but god damn did I do it.
+
+//This whole thing could be replaced with a function 
 filterednotes = _notes.filter(n => n._time >= 23 && n._time < 69);
 filterednotes.forEach(note => {
   note._customData._track = "FDAU"
 });
 
+//This should also be replaced with a basic function
 filterednotes = _notes.filter(n => n._time >= 25 && n._time < 28);
 filterednotes.forEach(note => {
   note._customData._noteJumpStartBeatOffset = 1;
 });
 
+
 filterednotes = _notes.filter(n => n._time >= 14 && n._time < 16);
 filterednotes.forEach(note => {
-  note._customData._disableSpawnEffect = "true"
-  note._customData._noteJumpStartBeatOffset = 6.9;
+  note._customData._disableSpawnEffect = "true"    // Disables spawn light
+  note._customData._noteJumpStartBeatOffset = 6.9; // Forces Offset
 });
 
 filterednotes = _notes.filter(n => n._time >= 23 && n._time < 25);
@@ -331,8 +340,8 @@ filterednotes = notesAt([30]);
 filterednotes.forEach(note => {
   note._customData._noteJumpStartBeatOffset = 2;
   note._customData._animation = {}
-  note._customData._animation._scale = [[1, 1, 1, 0.3], [1.3, 0.69, 1, 0.45]];
-
+  note._customData._animation._scale = [[1, 1, 1, 0.3], [1.3, 0.69, 1, 0.45]]; // Squashes note right after jump animation and finishes anim right before player cuts.
+  //                                   [[x, y, z, t  ], [horizontal, vertical, back/fourth, note lifetime]];
 });
 
 filterednotes = notesAt([31]);
@@ -392,9 +401,9 @@ filterednotes.forEach(note => {
 
 _customEvents.push({
   _time: 66,
-  _type: "AssignPlayerToTrack",
+  _type: "AssignPlayerToTrack", // Does exactly what you think it does. BE CAREFUL WITH THIS.
   _data: {
-    _track: "yack",
+    _track: "yack", // Track is named like this for a reason. It will make players motion sick.
   }
 }, {
   _time: 67,
@@ -624,15 +633,18 @@ _customEvents.push({
   }
 });
 
+
 _customEvents.push({
   _time: 0,
-  _type: "AssignTrackParent",
+  _type: "AssignTrackParent",    //Does what you think it does. Parents a track to another child track. Anything done to the parent, will also be applied to children tracks.
   _data: {
-    _childrenTracks: ["hlcyg"],
+    _childrenTracks: ["hlcyg"], // is an array, multiple tracks can be added as shown below
+    //_childrenTracks: ["hlcyg", "example2", "example3", "ThisBitchCanFitSoManyChildrednInsideOfIt"],
     _parentTrack: "peepoClown",
   }
 });
 
+// Not going to comment out the rest as it's fairly easy to figure out past this point
 _customEvents.push({
   _time: 0,
   _type: "AnimateTrack",
