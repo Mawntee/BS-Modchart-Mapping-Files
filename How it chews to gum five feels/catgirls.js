@@ -530,12 +530,20 @@ for (let i = 0; i < (196-136); i++){
 
 
 //#region                       -  -  -  -  -  -  -  -  -  -  -  -  -  DO YOUR DIRTY WORK HERE  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+// Random number generator
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
 
 
 
+
+// I genuinely don't know why this is built like this. 
+// I must have been on some SHIT when I did this one o boi
+
+//TL;DR
+//Each thing filters notes at a specific time, then assigns (almost) random values for each thing
 filterednotes = _notes.filter(n => n._time >= 2 && n._time <= 2.25);
 filterednotes.forEach(note => {
   note._customData._noteJumpStartBeatOffset = getRndInteger(-1.50, 2.00);
