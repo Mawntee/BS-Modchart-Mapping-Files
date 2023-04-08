@@ -6,6 +6,12 @@ Each chart really focuses on one main aspect/gimmick or a new feature that was a
 
 I still go back to these scripts as a reference for charts that I'm currently working on, so I figured I'd post them up here as well for others to pick apart and see how things are done. 
 
+Before diving in, I highly recommend taking a second to watch my video going over all the different animation types in Noodle Extensions and what they do.
+https://youtu.be/nMHaPJ8o-Jk
+As well, you should have a brief look at the difference between the "Expert" and "ExpertPlus" difficulty files. 
+Open them up side by side and just take a few minutes to notice any differences between the two, and try to take some guesses as to what each thing does.
+It will make a lot of this stuff significantly easier to understand!
+
 
 My Workflow:
 1. Start with a vanilla map "Expert" difficulty in MMA2
