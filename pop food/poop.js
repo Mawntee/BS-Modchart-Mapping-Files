@@ -1538,6 +1538,9 @@ _customEvents.push({
 //#region                       -  -  -  -  -  -  -  -  -  -  -  -  -  DO YOUR DIRTY WORK HERE  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 //trackOnNotesBetween("notes", 0,36,0)
+
+//First few notes set up and applied to same track as the player
+//When the player is first moved up the highway, the notes will also follow
 filterednotes = _notes.filter(n => n._time >= 0 && n._time <= 4);
 filterednotes.forEach(note => {
   note._customData._track = "Player";
@@ -1546,6 +1549,9 @@ filterednotes.forEach(note => {
   note._customData._animation = {}
 });
 
+// Small "wave" or "curve" applied to the NJS
+// I do this in a lot of maps to get the reaction time of having a far offset, without the offset actually feeling far/slow for the player.
+// Note Jump and Spawn light disabled to give a slightly more "uncomfortable" or "unfamiliar" feeling to the gameplay
 filterednotes = _notes.filter(n => n._time > 4 && n._time <= 420);
 filterednotes.forEach(note => {
   note._customData._track = "notes";
@@ -1557,29 +1563,7 @@ filterednotes.forEach(note => {
   note._customData._animation._position = [[0,0,-5,0],[0,0,0,0.5,"easeOutCubic"]]
 });
 
-
-
-//_notes.push({
-//  _time: 4,
-//  _lineIndex: 2,
-//  _lineLayer: 1,
-//  _type: 1,
-//  _cutDirection: 8,
-//  _customData:{
-//    _noteJumpStartBeatOffset: 0,
-//    _noteJumpMovementSpeed: 10,
-//    _interactable: false,
-//    _disableSpawnEffect: true,
-//    _track: "static",
-//    _dissolveArrow: [0],
-//    _rotation: [0,0,0],
-//    _scale: [100,20,0.2],
-//    _position: [0,0,0],
-//    _color: [0.1,0.1,0.1,1]
-//  }
-//})
-
-
+// Spawns walls to be used as fake screen distortion effects
 _obstacles.push({
   _time: 0.01,
   _duration: 5,
@@ -1589,8 +1573,8 @@ _obstacles.push({
   _customData:{
     _noteJumpStartBeatOffset: 0,
     _noteJumpMovementSpeed: 10,
-    _interactable: false,
-    _fake: true,
+    _interactable: false, // Walls won't vibrate players controllers when touched | Also good for optimization on visual walls as all colision/interaction scripts are removed.
+    _fake: true,          // Disables scoring on wall.
     _disableSpawnEffect: true,
     _track: "Distortion",
     _rotation: [0,0,0],
@@ -1708,6 +1692,9 @@ _obstacles.push({
   }
 })
 
+//These events below control all the funny distortion effects going on in the map.
+
+//This one controls the main "layers" or "slices" of distortion blocking the notes.
 _customEvents.push({
   _time: 3,
   _type: "AnimateTrack",
@@ -1717,9 +1704,9 @@ _customEvents.push({
     _duration: 34,
     _localRotation: [[getRndInteger(-2,2), getRndInteger(-2,2), getRndInteger(-2,2), 0], [getRndInteger(-2,2), getRndInteger(-2,2), getRndInteger(-2,2), 1, "easeInOutSine"]],
     _position: [[0, -50, -72, 0], [0, -50, -67, 1]],
-    _scale: [[500,200,100,0]],
+    _scale: [[500,200,100,0]], // Walls scaled by track animation events after being created will "stretch". The distortion size was set when wall was created, then "zoomed in" using these effects to make it seem like the whole screen was distorted.
     _dissolve: [[0.125,0], [0.2, 1, "easeInOutElastic"]],
-    _color: [[0,0,0,-5,0], [0,0,0,-10,1, "easeInOutBack"]]
+    _color: [[0,0,0,-5,0], [0,0,0,-10,1, "easeInOutBack"]] // [r,g,b,a,t] - [red,green,blue,alpha,time] | The "alpha" value of walls controls their distortion levels. Negative alpha makes walls look "reflective", but will invert the colours.
   }
 },{
   _time: 3,
@@ -1747,7 +1734,7 @@ _customEvents.push({
     _dissolve: [[0.35,0], [0.45, 1, "easeInOutElastic"]],
     _color: [[0,0,0,-15,0], [0,0,0,-25,1, "easeInOutBounce"]]
   }
-},{
+},{   // This event sets up the furthest piece of ditortion that acts as the "back wall"
   _time: 3,
   _type: "AnimateTrack",
   _data: {
@@ -1760,7 +1747,7 @@ _customEvents.push({
     _dissolve: [[1,0]],
     _color: [[0,0,0,-420,0],[0,0,0,-696.9,1, "easeInOutBack"]]
   }
-},{
+},{  // This one controls the little "waves" you see floating just above the mirror on the floor.
   _time: 3,
   _type: "AnimateTrack",
   _data: {
@@ -1773,7 +1760,7 @@ _customEvents.push({
     _dissolve: [[0.45,0],[0.55,1, "easeInOutBack"]],
     _color: [[0,0,0,-15,0], [0,0,0,-69,1, "easeInOutBack"]],
   }
-},{
+},{  // Same thing as above, but for the top.
   _time: 3,
   _type: "AnimateTrack",
   _data: {
@@ -1789,6 +1776,9 @@ _customEvents.push({
 });
 
 
+// These events are used to fine tune the main distortion effect directly in front of the players face. 
+// This distortion layer is what does all the funny flickers and colour changes/flashes
+// Don't dig too deep into this as many events are just syncing certain things to specific sounds
 _customEvents.push({
   _time: 0,
   _type: "AnimateTrack",
@@ -2048,7 +2038,7 @@ _customEvents.push({
 
 
 
-
+// Section below assigns player to a track so the player can be animated/moved.
 _customEvents.push({
   _time: 0.25,
   _type: "AssignPlayerToTrack",
@@ -2057,7 +2047,7 @@ _customEvents.push({
   }
 });
 
-
+// parents all wall objects to one track so all effects can be hidden/revealed using a single event at the start of the map.
 _customEvents.push({
   _time: 0,
   _type: "AssignTrackParent",
@@ -2069,7 +2059,8 @@ _customEvents.push({
 
 
 
-
+// First event shoves the walls/distortion stuff really far away and out of sight
+// Second event overrides first event giving walls/player the same position. Then slowly moves everything forward through the environment all at once.
 _customEvents.push({
   _time: 0,
   _type: "AnimateTrack",
@@ -2082,7 +2073,7 @@ _customEvents.push({
   _time: 3,
   _type: "AnimateTrack",
   _data: {
-    _track: ["Yes", "Player"],
+    _track: ["Yes", "Player"], // tracks can be arrays both in events, and applied per object. | Single events can move multiple tracks & One object can be assigned to multiple tracks.
     _duration: 32,
     _position: [[0, 0, 12, 0],[0, 0, 35, 1]],
   }
