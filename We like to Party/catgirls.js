@@ -531,24 +531,26 @@ for (let i = 0; i < (196-136); i++){
 
 //#region                       -  -  -  -  -  -  -  -  -  -  -  -  -  DO YOUR DIRTY WORK HERE  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-filterednotes = _notes.filter(n => n._time >= 3 && n._time <= 56);
+filterednotes = _notes.filter(n => n._time >= 3 && n._time <= 56); // filter all notes from start to finish of chart | _time = beat
 filterednotes.forEach(note => {
-  note._customData._noteJumpStartBeatOffset = -0.2;
-  note._customData._noteJumpMovementSpeed = 16;
+  note._customData._noteJumpStartBeatOffset = -0.25; // force offset to stop JD fixer from messing with things.
+  note._customData._noteJumpMovementSpeed = 16; // Drop NJS lower than what's shown in the info.dat to get around !bsr filters
 });
 
-filterednotes = notesAt([62]);
+filterednotes = notesAt([62]); // Grabs note specifically on this beat.
 filterednotes.forEach(note => {
-  note._customData._track = "light"
-  note._customData._noteJumpStartBeatOffset = 8      
+  note._customData._track = "light" // assign note to a "track" so I can identify it and animate it with an event later on.
+  note._customData._noteJumpStartBeatOffset = 8 // longer offset used so the note is "alive" and on screen for a longer period of time.      
   note._customData._noteJumpMovementSpeed = 26;       
   note._customData._animation = {}
-  note._customData._animation._position = [[-0.5, 1, -10, 0]];
+  note._customData._animation._position = [[-0.5, 1, -10, 0]]; // note is centered in the lanes (x,y), and moved back down the highway (z), starting at the beginning of it's life (t)
   note._customData._animation._scale = [[4.20,4.20,4.20,0]]    
-  note._customData._animation._dissolve = [[0,0]]
-  //note._customData._animation._color = [[20, 20, 20, 50, 0]]
+  note._customData._animation._dissolve = [[0,0]] // note "block" is made invisible through dissolve, arrow/dot is left untouched to create a large circle down the highway.
+  //note._customData._animation._dissolveArrow = [[0,0]] // This section would have dissolved the dot/arrow as well
+  //note._customData._animation._color = [[20, 20, 20, 50, 0]] // scrapped this because my brain was smooth and didn't know how to properly time things based on offset/bpm/notes lifetime
 });
 
+// Same shit as above, but for the notes you actually hit. 
 filterednotes = _notes.filter(n => n._time > 62 && n._time <= 69);
 filterednotes.forEach(note => {
   note._customData._track = "train"
@@ -556,21 +558,23 @@ filterednotes.forEach(note => {
   note._customData._noteJumpMovementSpeed = 26;       
   note._customData._animation = {}
   note._customData._animation._position = [[-0.5, 1, -10, 0]];
-  note._customData._animation._scale = [[6.9,6.9,6.9,0]] 
-  note._customData._animation._dissolveArrow = [[0,0]]
+  note._customData._animation._scale = [[6.9,6.9,6.9,0]] // notes scaled larger to fill the whole tunner environment.
+      // in hindsight I shouldn't have adjusted the z scale as this changesthe hitbox as well, wich messes with the timing of the note. 
+  note._customData._animation._dissolveArrow = [[0,0]] // Only the arrow is dissolved leaving the large blocks.
   //note._customData._animation._color = [[0.1, 0.1, 0.1, 1, 0]]
 });
 
-_customEvents.push({
-  _time: 0,
-  _type: "AnimateTrack",
+_customEvents.push({ // pushes a new event in the "_customEvents" array
+  _time: 0, // beat when thing happens
+  _type: "AnimateTrack", // Animation type | Animate track does everything stuck to "beats" where as "AssignPathAnimation" will animate along a notes lifetime.
   _data: {
     _track: "light",
-    _duration: 0,
-    _color: [[200, 200, 200, 500, 0]]
+    _duration: 0, // in hindsight, this isn't required at all as the default duration is 0
+    _color: [[200, 200, 200, 500, 0]] // Sets the arrow colour to something well over what the limits should be (0-1) to create a large flash in the background with the games bloom system
   }
 });
 
+// same as above, but sets the train colour to a dark grey
 _customEvents.push({
   _time: 0,
   _type: "AnimateTrack",
