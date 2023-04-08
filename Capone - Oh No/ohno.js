@@ -437,22 +437,29 @@ for (let i = 0; i < (196-136); i++){
 
 //#region             -  -  -  -  -  -  -  -  -  -  -  -  -  DO YOUR DIRTY WORK HERE  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-function ohno(startBeat, track) {
-  _pointDefinitions.push({
+// This one is gross and I hate everything about it. 
+// Comments will kept minimal, check out other files like "We like to Party" or "Small shock" for details on what these events are/how they work
+
+
+
+
+function ohno(startBeat, track) { // I wasn't about to copy/paste the same thing for every single note in this song, So I made it into an easy to call function!
+  _pointDefinitions.push({ // This should not have been included in the function. A point defintion only has to be made ONCE. That's the whole point of them. 
     _name:"ohnoTime",
-    _points:[
-      [0.44,0],
-      [0.4, 0.3,"easeOutCubic"],
-      [1,1]
+    _points:[ // First point in each array is for the notes "new" custom lifetime, and the second value is it's actual calculated lifetime
+      [0.44,0], // when the note first spawns in, custom time is set midway through it's jump animation
+      [0.4, 0.3,"easeOutCubic"], // from 0 - 0.3 of the notes life, the note's custom life reverses slightly give it a slight bounce back effect
+      [1,1] // This should have been 0.5,0.5 (or slighty sooner at 0.48,0.48 as "0.5" is on beat when the note is cut. 
+            // I had to make some funny timing changes to get everything to lined up and timed correctly later on.
     ]
   })
   filterednotes = _notes.filter(n => n._time > startBeat && n._time < startBeat+2);
   filterednotes.forEach(note => {
-    note._customData._disableNoteGravity = true;
+    note._customData._disableNoteGravity = true; // disables jump animation so note spawns already in it's final grid position instead of on the floor.
     note._customData._noteJumpMovementSpeed = 17;
 });
   trackOnNotesBetween(track, startBeat, startBeat+2, 6);
-  _customEvents.push({
+  _customEvents.push({ // Every note assigned to this track will spawn in fully disolved/invisible
     _time: 0,
     _type: "AnimateTrack",
     _data: {
@@ -462,7 +469,7 @@ function ohno(startBeat, track) {
       _dissolveArrow: [[0, 0]]
     }
   }, {
-    _time: startBeat-4,
+    _time: startBeat-4,    // fades in the note 4 beats before it is cut.
     _type: "AnimateTrack",
     _data: {
       _duration: 1,
@@ -471,7 +478,7 @@ function ohno(startBeat, track) {
       _dissolveArrow: [[0, 0], [1, 1]]
     }
   }, {
-    _time: startBeat-4,
+    _time: startBeat-4,    // Animates the note "lifetime" based on the point defintion set above. 
     _type: "AnimateTrack",
     _data: {
       _time:"ohnoTime",
@@ -481,8 +488,9 @@ function ohno(startBeat, track) {
   });
 }
 
+// The rest of these are slightly modified cases that are either personalized for certain patterns, or slightly sped up to increase the intensity and pacing of the chart
 function ohnoend(startBeat, track) {
-  _pointDefinitions.push({
+  _pointDefinitions.push({ // more useless pint definiton push
     _name:"ohnoTime",
     _points:[
       [0.44,0],
@@ -617,6 +625,8 @@ function ohnononononoend(startBeat, track) {
   });
 }
 
+
+// setting NJS of the normal sections - In later scripts this was converted to a function.
 filterednotes = _notes.filter(n => n._time > 40 && n._time < 136);
 filterednotes.forEach(note => {
   note._customData._noteJumpMovementSpeed = 14;
@@ -644,18 +654,21 @@ filterednotes.forEach(note => {
 
 
 
-
+// these are all the function calls for each cursed pattern in this stupid fucking map.
+// If you look up at the original function parameters (line 446) you will see that 44 is the start beat, and "1" is the track name. 
 ohno(44,"1")
 ohno(48,"2")
 ohnonononono(56,"3")
 ohno(60,"4")
-_customEvents.push({
+// random events are sprinkled just to personalize some of the patterns.
+// This is why each pattern is given a unique track name instead of them all getting the same thing.
+_customEvents.push({ 
   _time: 0,
   _type: "AnimateTrack",
   _data: {
     _duration:1,
     _track:"4",
-    _position: [[-0.5,0,0,0]]
+    _position: [[-0.5,0,0,0]] // this one had to be centered as it was probably a single or three note width pattern I didn't want off to one side
   }
 });
 ohno(64,"5")
@@ -781,14 +794,17 @@ ohno(444,"52")
 ohno(448,"53") 
 ohnononononoend(456 ,"55")
 
+// This section displays a bunch of notes that the player thinks they should cut, but dissolves them out as they approach the player to act as a little "fake-out"
 filterednotes = _notes.filter(n => n._time > 264 && n._time < 265);
 filterednotes.forEach(note => {
   note._customData._animation = {}
   note._customData._animation._dissolve = [[1,0.4],[0,0.42]]
   note._customData._animation._dissolveArrow = [[1,0.4],[0,0.42]]
-  note._customData._fake = true;  
+  note._customData._fake = true;  // This removes the notes/walls from score calculation
+    // note: Makeing a note fake means you are still able to cut it, but it just won't affect scoring. | use "_interactable" if you don't want to cut the note.
 });
 
+// Dissolves out the end notes. 
 filterednotes = _notes.filter(n => n._time > 486 && n._time <=488);
 filterednotes.forEach(note => {
   note._customData._animation = {}
