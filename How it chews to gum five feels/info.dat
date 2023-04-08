@@ -1,0 +1,55 @@
+{
+  "_version": "2.0.0",
+  "_songName": "How it Chews to Gum Five Feels",
+  "_songSubName": "",
+  "_songAuthorName": "gum gum",
+  "_levelAuthorName": "Chief Queef",
+  "_beatsPerMinute": 69,
+  "_shuffle": 0,
+  "_shufflePeriod": 0.5,
+  "_previewStartTime": 12,
+  "_previewDuration": 10,
+  "_songFilename": "gum.ogg",
+  "_coverImageFilename": "cover.jpg",
+  "_environmentName": "TriangleEnvironment",
+  "_songTimeOffset": 0,
+  "_customData": { "_contributors": [] },
+  "_difficultyBeatmapSets": [
+    {
+      "_beatmapCharacteristicName": "Lawless",
+      "_difficultyBeatmaps": [
+        {
+          "_difficulty": "Easy",
+          "_difficultyRank": 1,
+          "_beatmapFilename": "EasyStandard.dat",
+          "_noteJumpMovementSpeed": 69,
+          "_noteJumpStartBeatOffset": 420,
+          "_customData": {
+            "_environmentRemoval" : [
+                "BackColumns",
+                "TrackMirror",
+                "TrackConstruction",
+                "Buildings",
+                "FrontLights",
+                "GlowLine",
+                "Mirror",
+                "SaberBurnMarksParticles",
+                "SaberBurnMarksArea",
+                "Feet",
+                "Construction",
+                "RectangleFakeGlow",
+                "Frame"
+            ],
+            "_difficultyLabel": "gum",
+            "_editorOffset": 0,
+            "_editorOldOffset": 0,
+            "_warnings": [],
+            "_information": [],
+            "_suggestions": [],
+            "_requirements": ["Noodle Extensions", "Chroma"]
+          }
+        }
+      ]
+    }
+  ]
+}
