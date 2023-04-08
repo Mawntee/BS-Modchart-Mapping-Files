@@ -858,10 +858,7 @@ for (let i = 0; i < (196-136); i++){
     toggle = !toggle;
 }
 //#endregion
-*/
 
-
-//#region                       -  -  -  -  -  -  -  -  -  -  -  -  -  DO YOUR DIRTY WORK HERE  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 function paul(startBeat, length) {
 filterednotes = notesAt([startBeat]);
@@ -1048,28 +1045,28 @@ _pointDefinitions.push({
   _name: "ohnoTime",
   _points: [[0.41, 0.1, "splineCatmullRom"], [0.35, 0.25, "splineCatmullRom"], [0.35, 0.35, "splineCatmullRom"], [0.5, 0.5], [1, 1]]
 });
-
-//#endregion 
-
+*/
 
 
+//#region                       -  -  -  -  -  -  -  -  -  -  -  -  -  DO YOUR DIRTY WORK HERE  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
-//#region       -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  Stuff & Things -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  
 
+// This is pain
+// A better method would be to create a function that tracks notes based on whatever filters I have set below, then use "AssignPathAnimation" events.
 
 filterednotes = _notes.filter(n => n._time >= 0 && n._time <= 666);
 filterednotes.forEach(note => {
- note._customData._noteJumpStartBeatOffset = -1
+ note._customData._noteJumpStartBeatOffset = -1 // Using offsets of 0, 0.25, 0.5, 1, 2, etc/ ensures that the jump animation (0.25 of notes life) will sync with the songs BPM
  note._customData._noteJumpMovementSpeed = 12
- note._customData._disableSpawnEffect = true;
- note._customData._disableNoteGravity = true;
+ note._customData._disableSpawnEffect = true; // Disables spawn light.
+ note._customData._disableNoteGravity = true; // Disables gravity so note spawns already in it's ending grid position | Disables (positional) jump animation
  note._customData._animation = {}
  //note._customData._animation._position = [[0,0,6.9,0.25],[0,0,0,0.4875,"easeOutBack"]];
- note._customData._animation._localRotation = [[179,0,0,0.125], [0,0,0,0.25,"easeOutCirc"]];
- if (note._lineLayer == 0) {
-  if (note._lineIndex == 0) {
-    note._customData._animation._position = [[1.5,0,16.9,0], [0,0,0,0.25,"easeInBack"]];
+ note._customData._animation._localRotation = [[179,0,0,0.125], [0,0,0,0.25,"easeOutCirc"]]; // [x,y,z,t] / [pitch,yaw,roll,time] | This section makes notes roll in - 179 ensures note will always roll same direction
+ if (note._lineLayer == 0) {    // Layer = Lanes bottom to top (0 = bottom, 2 = top)
+  if (note._lineIndex == 0) {	// Index = Lanes left to right (0 = left, 3 = right)
+    note._customData._animation._position = [[1.5,0,16.9,0], [0,0,0,0.25,"easeInBack"]]; // [x,y,z,t] | x coord centers note | z coord moves note forward | Back smoothing is used with z pos movement to kind of "bounce" the NJS
   }
   if (note._lineIndex == 1) {
     note._customData._animation._position = [[0.5,0,16.9,0], [0,0,0,0.25,"easeInBack"]];
