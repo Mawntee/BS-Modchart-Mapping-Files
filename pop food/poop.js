@@ -2083,7 +2083,8 @@ _customEvents.push({
 
 
 
-
+// function calls that control the glitch and trailing arrow effects
+// These are pulled directly from "Love Love Love You I Love You (Eye's by Eyes Remix)": https://beatsaver.com/maps/133c5 
 glitchPos(7.416,8.5)
 trail(5.583332538604736, 32)
 trail(11.833332061767578, 8)
@@ -2098,7 +2099,7 @@ glitchPos(27.3,27.75)
 _environment.push({
   _id: "GlowLine \\(\\d*\\)$",
   _lookupMethod: "Regex",
-  _scale: [1,getRndInteger(20,40)*0.1,1]
+  _scale: [1,getRndInteger(20,40)*0.1,1] // grabs all the lttle lines in the KDA env and sets a random height (y value)
 }); 
 
 
@@ -2107,11 +2108,11 @@ _environment.push({
   _lookupMethod: "Regex",
   _scale: [1,3.5,1],
 },{
-  _id: "BigSmokePS$",
+  _id: "BigSmokePS$", // Force enables fog | Now it's better to use the "Settings Setter" as this will also enabled the depth map, and the fog will blend with the highway much better without clipping
   _lookupMethod: "Regex",
   _active: true,
 },{
-  _id: "TentacleLeft$",
+  _id: "TentacleLeft$",  // yeet the hentai
   _lookupMethod: "Regex",
   _active: false,
 },{
@@ -2125,9 +2126,9 @@ _environment.push({
   _active: true,
   _position: [0,15/0.6, -20/0.6],
   _rotation: [0,0,180]
-},{
-  _id: "If you're a girl and you're reading this please DM me",
-  _lookupMethod: "Contains",
+},{ // An object with this ID (most likely) won't ever be found by Chroma, and will return a bright red highly visible error in the log/console window | launch option "--verbose", or "_latest.log" in logs folder.
+  _id: "If you're a girl and you're reading this please DM me", // Please. I'm extremely single. 
+  _lookupMethod: "Contains", 
   _active: true,
 });
 
