@@ -1,0 +1,115 @@
+{
+  "_version" : "2.0.0",
+  "_songName" : "FUN!",
+  "_songSubName" : "(SILO x Martin Wave Remix)",
+  "_songAuthorName" : "Vince Staples",
+  "_levelAuthorName" : "Mawntee (ft. Reddek)",
+  "_beatsPerMinute" : 202,
+  "_shuffle" : 0,
+  "_shufflePeriod" : 0.5,
+  "_previewStartTime" : 29,
+  "_previewDuration" : 10,
+  "_songFilename" : "FUN.ogg",
+  "_coverImageFilename" : "cover.jpg",
+  "_environmentName" : "TriangleEnvironment",
+  "_songTimeOffset" : 0,
+  "_customData" : {
+    "_editors" : {
+      "MMA2" : {
+        "version" : "4.8.2"
+      },
+      "_lastEditedBy" : "ur mom",
+      "ChroMapper" : {
+        "version" : "6.9.420"
+      }
+    },
+    "_contributors" : [
+      {
+        "_name" : "Mawntee",
+        "_role" : "Map+Mods",
+        "_iconPath" : "deepfried.png"
+      },
+      {
+        "_name" : "Reddek",
+        "_role" : "Lighting",
+        "_iconPath" : "Reddek.jpg"
+      }
+    ]
+  },
+  "_difficultyBeatmapSets" : [
+    {
+      "_beatmapCharacteristicName" : "Lightshow",
+      "_difficultyBeatmaps" : [
+        {
+          "_difficulty" : "Easy",
+          "_difficultyRank" : 1,
+          "_beatmapFilename" : "EasyLightshow.dat",
+          "_noteJumpMovementSpeed" : 69,
+          "_noteJumpStartBeatOffset" : 1.2001,
+          "_customData" : {
+            "_requirements": [
+              "Chroma"
+            ],
+            "_difficultyLabel" : "Lightshow"
+          }
+        }
+      ]
+    },
+    {
+      "_beatmapCharacteristicName" : "Standard",
+      "_difficultyBeatmaps" : [
+        {
+          "_difficulty" : "Expert",
+          "_difficultyRank" : 7,
+          "_beatmapFilename" : "ExpertStandard.dat",
+          "_noteJumpMovementSpeed" : 16,
+          "_noteJumpStartBeatOffset" : -0.25,
+          "_customData" : {
+            "_editorOffset" : 0,
+            "_editorOldOffset" : 0,
+            "_difficultyLabel" : "Simplified",
+            "_requirements": [
+              "Noodle Extensions",
+              "Chroma"
+            ],
+            "_settings": {
+              "_environments":{
+                "_overrideEnvironments": false
+              },
+              "_chroma": {
+                "_disableChromaEvents": false,
+                "_disableEnvironmentEnhancements": false
+              }
+            }
+          }
+        },
+        {
+          "_difficulty" : "ExpertPlus",
+          "_difficultyRank" : 9,
+          "_beatmapFilename" : "ExpertPlusStandard.dat",
+          "_noteJumpMovementSpeed" : 18,
+          "_noteJumpStartBeatOffset" : -0.375,
+          "_customData" : {
+            "_editorOffset" : 0,
+            "_editorOldOffset" : 0,
+            "_difficultyLabel" : "Intended",
+            "_requirements": [
+              "Noodle Extensions",
+              "Chroma"
+            ],
+            "_settings": {
+              "_environments":{
+                "_overrideEnvironments": false
+              },
+              "_chroma": {
+                "_disableChromaEvents": false,
+                "_disableEnvironmentEnhancements": false
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "_allDirectionsEnvironmentName" : "GlassDesertEnvironment"
+}
