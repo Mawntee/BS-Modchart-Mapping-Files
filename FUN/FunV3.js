@@ -685,310 +685,310 @@ if (!environment.geometry) {
 //  }
 //  return walls;
 //}
-////#endregion
-//
-//
-//
-//
-//
-////#region FIXED FUNCTIONS
-//function lerp(v0, v1, t) {
-//  return v0 * (1 - t) + v1 * t;
-//}
-//
-//function rnd(min, max) {
-//  return Math.floor(Math.random() * (max - min)) + min;
-//}
-//
-//function notesAt(times) {
-//  return notes.filter(n => times.some(t => n.b == t));
-//}
-//
-//function genCircle(radius, n) {
-//  let pointss = [];
-//  for (let i = 0; i < n; i++) {
-//    pointss.push([
-//      radius * Math.cos(((2 * Math.PI) / n) * i) - 0.5,
-//      radius * Math.sin(((2 * Math.PI) / n) * i) * 1.16 - 1.6
-//    ]);
-//  }
-//  return pointss;
-//}
-//
-//function genCircleNoCorrection(radius, n) {
-//  let pointss = [];
-//
-//  for (let i = 0; i < n; i++) {
-//    pointss.push([
-//      radius * Math.cos(((2 * Math.PI) / n) * i),
-//      radius * Math.sin(((2 * Math.PI) / n) * i)
-//    ]);
-//  }
-//  return pointss;
-//}
-//
-//function round(value, decimals) {
-//  return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
-//}
-//
-//function trackOnNotesBetween(track, p1, p2) {
-//  filterednotes = notes.filter(n => n.b >= p1 && n.b <= p2);
-//  filterednotes.forEach(note => {
-//    if (!note.customData.track) {
-//    note.customData.track = track;
-//    }
-//    else {
-//      if(Array.isArray(note.customData.track)) {
-//        note.customData.track.push(track);
-//      }
-//      else {
-//        let prevTrack = note.customData.track;
-//        note.customData.track = [prevTrack];
-//        note.customData.track.push(track);
-//      }
-//    }
-//  });
-//  return filterednotes;
-//}
-//
-//function trackOnNotesBetweenRBSep(trackR, trackB, p1, p2) {
-//  filterednotes = notes.filter(n => n.b >= p1 && n.b <= p2);
-//  filterednotes.forEach(note => {
-//  if (!note.customData.track) {
-//    if (note.c == 0) {
-//      note.customData.track = trackR;
-//    }
-//    if (note.c == 1) {
-//      note.customData.track = trackB;
-//    }
-//  }
-//  else {
-//    if(Array.isArray(note.customData.track)) {
-//      if (note.c == 0) {
-//      note.customData.track.push(trackR);
-//      }
-//      if (note.c == 0) {
-//        note.customData.track.push(trackB);
-//        }
-//    }
-//    else {
-//      let prevTrack = note.customData.track;
-//      note.customData.track = [prevTrack];
-//      if (note.c == 0) {
-//        note.customData.track.push(trackR);
-//        }
-//        if (note.c == 0) {
-//          note.customData.track.push(trackB);
-//          }
-//    }
-//  }
-//  });
-//  return filterednotes;
-//}
-//
-//function offestOnNotesBetweenRBSep(start, end, potentialOffset, offsetR, offsetB ) {
-//  filterednotes = notes.filter(n => n.b >= start && n.b <= end);
-//  filterednotes.forEach(note => {
-//    if (typeof potentialOffset !== "undefined") {
-//      note.customData.noteJumpStartBeatOffset = potentialOffset;
-//    }
-//    if (note.c == 0) {
-//      note.customData.noteJumpStartBeatOffset = offsetR;
-//    }
-//    if (note.c == 1) {
-//      note.customData.noteJumpStartBeatOffset = offsetB;
-//    }
-//  });
-//  filteredburstSliders = burstSliders.filter(n => n.b >= start && n.b <= end);
-//  filteredburstSliders.forEach(burstSliders => {
-//    if (typeof potentialOffset !== "undefined") {
-//      burstSliders.customData.noteJumpStartBeatOffset = potentialOffset;
-//    }
-//    if (burstSliders.c == 0) {
-//      burstSliders.customData.noteJumpStartBeatOffset = offsetR;
-//    }
-//    if (burstSliders.c == 1) {
-//      burstSliders.customData.noteJumpStartBeatOffset = offsetB;
-//    }
-//  });
-//  return filteredburstSliders && filterednotes;
-//}
-//
-//function trackOnNotesBetweenDirSep( p1, p2, trackUp, trackDown, trackLeft, trackRight, trackUpLeft, trackUpRight, trackDownLeft, trackDownRight, trackDot) {
-//  filterednotes = notes.filter(n => n.b >= p1 && n.b <= p2);
-//  filterednotes.forEach(note => {
-//    if (!note.customData.track) {
-//      if (note.d == 0) {
-//        note.customData.track = trackUp;
-//      }
-//      if (note.d == 1) {
-//        note.customData.track = trackDown;
-//      }
-//      if (note.d == 2) {
-//        note.customData.track = trackLeft;
-//      }
-//      if (note.d == 3) {
-//        note.customData.track = trackRight;
-//      }
-//      if (note.d == 4) {
-//        note.customData.track = trackUpLeft;
-//      }
-//      if (note.d == 5) {
-//        note.customData.track = trackUpRight;
-//      }
-//      if (note.d == 6) {
-//        note.customData.track = trackDownLeft;
-//      }
-//      if (note.d == 7) {
-//        note.customData.track = trackDownRight;
-//      }
-//      if (note.d == 8) {
-//        note.customData.track = trackDot;
-//      }
-//  }
-//  else {
-//    if(Array.isArray(note.customData.track)) {
-//      if (note.d == 0) {
-//        note.customData.track.push(trackUp);
-//      }
-//      if (note.d == 1) {
-//        note.customData.track.push(trackDown);
-//      }
-//      if (note.d == 2) {
-//        note.customData.track.push(trackLeft);
-//      }
-//      if (note.d == 3) {
-//        note.customData.track.push(trackRight);
-//      }
-//      if (note.d == 4) {
-//        note.customData.track.push(trackUpLeft);
-//      }
-//      if (note.d == 5) {
-//        note.customData.track.push(trackUpRight);
-//      }
-//      if (note.d == 6) {
-//        note.customData.track.push(trackDownLeft);
-//      }
-//      if (note.d == 7) {
-//        note.customData.track.push(trackDownRight);
-//      }
-//      if (note.d == 8) {
-//        note.customData.track.push(trackDot);
-//      }
-//    }
-//    else {
-//      let prevTrack = note.customData.track;
-//      note.customData.track = [prevTrack];
-//      if (note.d == 0) {
-//        note.customData.track.push(trackUp);
-//      }
-//      if (note.d == 1) {
-//        note.customData.track.push(trackDown);
-//      }
-//      if (note.d == 2) {
-//        note.customData.track.push(trackLeft);
-//      }
-//      if (note.d == 3) {
-//        note.customData.track.push(trackRight);
-//      }
-//      if (note.d == 4) {
-//        note.customData.track.push(trackUpLeft);
-//      }
-//      if (note.d == 5) {
-//        note.customData.track.push(trackUpRight);
-//      }
-//      if (note.d == 6) {
-//        note.customData.track.push(trackDownLeft);
-//      }
-//      if (note.d == 7) {
-//        note.customData.track.push(trackDownRight);
-//      }
-//      if (note.d == 8) {
-//        note.customData.track.push(trackDot);
-//      }
-//    }
-//  }
-//  });
-//  return filterednotes;
-//}
-//
-//function offsetNJSOnNotesBetween(p1, p2, NJS, offset) {
-//  filterednotes = notes.filter(n => n.b >= p1 && n.b <= p2);
-//  filterednotes.forEach(note => {
-//      note.customData.noteJumpStartBeatOffset = offset;
-//      note.customData.noteJumpMovementSpeed = NJS;
-//  });
-//  filteredburstSliders = burstSliders.filter(n => n.b >= p1 && n.b <= p2);
-//  filteredburstSliders.forEach(burstSliders => {
-//    burstSliders.customData.noteJumpStartBeatOffset = offset;
-//    burstSliders.customData.noteJumpMovementSpeed = NJS;
-//  });
-//  filteredSliders = sliders.filter(s => s.b >= p1 && s.b <= p2);
-//  filteredSliders.forEach(sliders => {
-//    sliders.customData.noteJumpStartBeatOffset = offset;
-//    sliders.customData.noteJumpMovementSpeed = NJS;
-//  });
-//  return filteredSliders && filteredburstSliders && filterednotes;
-//}
-//
-//function trackOnNotesBetweenLaneSep(trackLane1, trackLane2, trackLane3, trackLane4, p1, p2) {
-//  filterednotes = notes.filter(n => n.b >= p1 && n.b <= p2);
-//  filterednotes.forEach(note => {
-//    if (!note.customData.track) {
-//      if (note.x == 0) {
-//        note.customData.track = trackLane1;
-//      }
-//      if (note.x == 1) {
-//        note.customData.track = trackLane2;
-//      }
-//      if (note.x == 2) {
-//        note.customData.track = trackLane3;
-//      }
-//      if (note.x == 3) {
-//        note.customData.track = trackLane4;
-//      }
-//    }
-//    else {
-//      if(Array.isArray(note.customData.track)) {
-//        if (note.x == 0) {
-//          note.customData.track.push(trackLane1);
-//        }
-//        if (note.x == 1) {
-//          note.customData.track.push(trackLane2);
-//        }
-//        if (note.x == 2) {
-//          note.customData.track.push(trackLane3);
-//        }
-//        if (note.x == 3) {
-//          note.customData.track.push(trackLane4);
-//        }
-//      }
-//      else {
-//        let prevTrack = note.customData.track;
-//        note.customData.track = [prevTrack];
-//          if (note.x == 0) {
-//            note.customData.track.push(trackLane1);
-//          }
-//          if (note.x == 1) {
-//            note.customData.track.push(trackLane2);
-//          }
-//          if (note.x == 2) {
-//            note.customData.track.push(trackLane3);
-//          }
-//          if (note.x == 3) {
-//            note.customData.track.push(trackLane4);
-//          }
-//      }
-//    }
-//  });
-//  return filterednotes;
-//}
-//
-//
-//
-//
-//
 //#endregion
+
+
+
+
+
+
+
+//#region FIXED V3 FUNCTIONS
+function lerp(v0, v1, t) {
+  return v0 * (1 - t) + v1 * t;
+}
+
+function rnd(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function notesAt(times) {
+  return notes.filter(n => times.some(t => n.b == t));
+}
+
+function genCircle(radius, n) {
+  let pointss = [];
+  for (let i = 0; i < n; i++) {
+    pointss.push([
+      radius * Math.cos(((2 * Math.PI) / n) * i) - 0.5,
+      radius * Math.sin(((2 * Math.PI) / n) * i) * 1.16 - 1.6
+    ]);
+  }
+  return pointss;
+}
+
+function genCircleNoCorrection(radius, n) {
+  let pointss = [];
+
+  for (let i = 0; i < n; i++) {
+    pointss.push([
+      radius * Math.cos(((2 * Math.PI) / n) * i),
+      radius * Math.sin(((2 * Math.PI) / n) * i)
+    ]);
+  }
+  return pointss;
+}
+
+function round(value, decimals) {
+  return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
+}
+
+function trackOnNotesBetween(track, p1, p2) {
+  filterednotes = notes.filter(n => n.b >= p1 && n.b <= p2);
+  filterednotes.forEach(note => {
+    if (!note.customData.track) {
+    note.customData.track = track;
+    }
+    else {
+      if(Array.isArray(note.customData.track)) {
+        note.customData.track.push(track);
+      }
+      else {
+        let prevTrack = note.customData.track;
+        note.customData.track = [prevTrack];
+        note.customData.track.push(track);
+      }
+    }
+  });
+  return filterednotes;
+}
+
+function trackOnNotesBetweenRBSep(trackR, trackB, p1, p2) {
+  filterednotes = notes.filter(n => n.b >= p1 && n.b <= p2);
+  filterednotes.forEach(note => {
+  if (!note.customData.track) {
+    if (note.c == 0) {
+      note.customData.track = trackR;
+    }
+    if (note.c == 1) {
+      note.customData.track = trackB;
+    }
+  }
+  else {
+    if(Array.isArray(note.customData.track)) {
+      if (note.c == 0) {
+      note.customData.track.push(trackR);
+      }
+      if (note.c == 0) {
+        note.customData.track.push(trackB);
+        }
+    }
+    else {
+      let prevTrack = note.customData.track;
+      note.customData.track = [prevTrack];
+      if (note.c == 0) {
+        note.customData.track.push(trackR);
+        }
+        if (note.c == 0) {
+          note.customData.track.push(trackB);
+          }
+    }
+  }
+  });
+  return filterednotes;
+}
+
+function offestOnNotesBetweenRBSep(start, end, potentialOffset, offsetR, offsetB ) {
+  filterednotes = notes.filter(n => n.b >= start && n.b <= end);
+  filterednotes.forEach(note => {
+    if (typeof potentialOffset !== "undefined") {
+      note.customData.noteJumpStartBeatOffset = potentialOffset;
+    }
+    if (note.c == 0) {
+      note.customData.noteJumpStartBeatOffset = offsetR;
+    }
+    if (note.c == 1) {
+      note.customData.noteJumpStartBeatOffset = offsetB;
+    }
+  });
+  filteredburstSliders = burstSliders.filter(n => n.b >= start && n.b <= end);
+  filteredburstSliders.forEach(burstSliders => {
+    if (typeof potentialOffset !== "undefined") {
+      burstSliders.customData.noteJumpStartBeatOffset = potentialOffset;
+    }
+    if (burstSliders.c == 0) {
+      burstSliders.customData.noteJumpStartBeatOffset = offsetR;
+    }
+    if (burstSliders.c == 1) {
+      burstSliders.customData.noteJumpStartBeatOffset = offsetB;
+    }
+  });
+  return filteredburstSliders && filterednotes;
+}
+
+function trackOnNotesBetweenDirSep( p1, p2, trackUp, trackDown, trackLeft, trackRight, trackUpLeft, trackUpRight, trackDownLeft, trackDownRight, trackDot) {
+  filterednotes = notes.filter(n => n.b >= p1 && n.b <= p2);
+  filterednotes.forEach(note => {
+    if (!note.customData.track) {
+      if (note.d == 0) {
+        note.customData.track = trackUp;
+      }
+      if (note.d == 1) {
+        note.customData.track = trackDown;
+      }
+      if (note.d == 2) {
+        note.customData.track = trackLeft;
+      }
+      if (note.d == 3) {
+        note.customData.track = trackRight;
+      }
+      if (note.d == 4) {
+        note.customData.track = trackUpLeft;
+      }
+      if (note.d == 5) {
+        note.customData.track = trackUpRight;
+      }
+      if (note.d == 6) {
+        note.customData.track = trackDownLeft;
+      }
+      if (note.d == 7) {
+        note.customData.track = trackDownRight;
+      }
+      if (note.d == 8) {
+        note.customData.track = trackDot;
+      }
+  }
+  else {
+    if(Array.isArray(note.customData.track)) {
+      if (note.d == 0) {
+        note.customData.track.push(trackUp);
+      }
+      if (note.d == 1) {
+        note.customData.track.push(trackDown);
+      }
+      if (note.d == 2) {
+        note.customData.track.push(trackLeft);
+      }
+      if (note.d == 3) {
+        note.customData.track.push(trackRight);
+      }
+      if (note.d == 4) {
+        note.customData.track.push(trackUpLeft);
+      }
+      if (note.d == 5) {
+        note.customData.track.push(trackUpRight);
+      }
+      if (note.d == 6) {
+        note.customData.track.push(trackDownLeft);
+      }
+      if (note.d == 7) {
+        note.customData.track.push(trackDownRight);
+      }
+      if (note.d == 8) {
+        note.customData.track.push(trackDot);
+      }
+    }
+    else {
+      let prevTrack = note.customData.track;
+      note.customData.track = [prevTrack];
+      if (note.d == 0) {
+        note.customData.track.push(trackUp);
+      }
+      if (note.d == 1) {
+        note.customData.track.push(trackDown);
+      }
+      if (note.d == 2) {
+        note.customData.track.push(trackLeft);
+      }
+      if (note.d == 3) {
+        note.customData.track.push(trackRight);
+      }
+      if (note.d == 4) {
+        note.customData.track.push(trackUpLeft);
+      }
+      if (note.d == 5) {
+        note.customData.track.push(trackUpRight);
+      }
+      if (note.d == 6) {
+        note.customData.track.push(trackDownLeft);
+      }
+      if (note.d == 7) {
+        note.customData.track.push(trackDownRight);
+      }
+      if (note.d == 8) {
+        note.customData.track.push(trackDot);
+      }
+    }
+  }
+  });
+  return filterednotes;
+}
+
+function offsetNJSOnNotesBetween(p1, p2, NJS, offset) {
+  filterednotes = notes.filter(n => n.b >= p1 && n.b <= p2);
+  filterednotes.forEach(note => {
+      note.customData.noteJumpStartBeatOffset = offset;
+      note.customData.noteJumpMovementSpeed = NJS;
+  });
+  filteredburstSliders = burstSliders.filter(n => n.b >= p1 && n.b <= p2);
+  filteredburstSliders.forEach(burstSliders => {
+    burstSliders.customData.noteJumpStartBeatOffset = offset;
+    burstSliders.customData.noteJumpMovementSpeed = NJS;
+  });
+  filteredSliders = sliders.filter(s => s.b >= p1 && s.b <= p2);
+  filteredSliders.forEach(sliders => {
+    sliders.customData.noteJumpStartBeatOffset = offset;
+    sliders.customData.noteJumpMovementSpeed = NJS;
+  });
+  return filteredSliders && filteredburstSliders && filterednotes;
+}
+
+function trackOnNotesBetweenLaneSep(trackLane1, trackLane2, trackLane3, trackLane4, p1, p2) {
+  filterednotes = notes.filter(n => n.b >= p1 && n.b <= p2);
+  filterednotes.forEach(note => {
+    if (!note.customData.track) {
+      if (note.x == 0) {
+        note.customData.track = trackLane1;
+      }
+      if (note.x == 1) {
+        note.customData.track = trackLane2;
+      }
+      if (note.x == 2) {
+        note.customData.track = trackLane3;
+      }
+      if (note.x == 3) {
+        note.customData.track = trackLane4;
+      }
+    }
+    else {
+      if(Array.isArray(note.customData.track)) {
+        if (note.x == 0) {
+          note.customData.track.push(trackLane1);
+        }
+        if (note.x == 1) {
+          note.customData.track.push(trackLane2);
+        }
+        if (note.x == 2) {
+          note.customData.track.push(trackLane3);
+        }
+        if (note.x == 3) {
+          note.customData.track.push(trackLane4);
+        }
+      }
+      else {
+        let prevTrack = note.customData.track;
+        note.customData.track = [prevTrack];
+          if (note.x == 0) {
+            note.customData.track.push(trackLane1);
+          }
+          if (note.x == 1) {
+            note.customData.track.push(trackLane2);
+          }
+          if (note.x == 2) {
+            note.customData.track.push(trackLane3);
+          }
+          if (note.x == 3) {
+            note.customData.track.push(trackLane4);
+          }
+      }
+    }
+  });
+  return filterednotes;
+}
+
+//#endregion
+
+
 
 
 
