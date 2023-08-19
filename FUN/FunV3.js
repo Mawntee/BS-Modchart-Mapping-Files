@@ -140,11 +140,11 @@ if (!environment.geometry) {
 //  let num = 60 / bpm;
 //  let num2 = _startHalfJumpDurationInBeats;
 //  while (_noteJumpMovementSpeed * num * num2 > _maxHalfJumpDistance) {
-    num2 /= 2;
+//  num2 /= 2;
 //  }
 //  num2 += _noteJumpStartBeatOffset;
 //  if (num2 < 1) {
-    num2 = 1;
+//  num2 = 1;
 //  }
 //  const _jumpDuration = num * num2 * 2;
 //  const _jumpDistance = _noteJumpMovementSpeed * _jumpDuration;
