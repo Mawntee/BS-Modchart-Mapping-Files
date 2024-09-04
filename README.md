@@ -1,4 +1,4 @@
-# Chief-Queef-Mapping-Files
+# Chief-Queef-Mapping-Files (outdated)
 Original files/scripts from the Chief Queef Beat Saber charts. 
 
 "Chief Queef" was an alt account that I used to first learn notemods and effects in Beat Saber using Noodle Extensions.
